@@ -1,5 +1,5 @@
 <template>
-<div>分类</div>    
+<div>个人</div>    
 </template>
 <script>
 export default {

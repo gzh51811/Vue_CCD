@@ -1,5 +1,5 @@
 <template>
-<div>分类</div>    
+<div>识物</div>    
 </template>
 <script>
 export default {
