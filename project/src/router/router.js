@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import App from '../App.vue';
-import Xlist from '../pages/List.vue';
+import Xlist from '../pages/list.vue';
+import Xgoods from '../pages/goods.vue';
 import Xshiwu from '../pages/Shiwu.vue';
 import Xcart from '../pages/Cart.vue';
 import Xpersonal from "../pages/Personal.vue";
@@ -22,7 +23,13 @@ const routes = [
         path: '/list',
         name: 'list',
         component: Xlist
-    }, 
+    },
+    //详情
+    {
+        path: '/goods',
+        name: 'goods',
+        component: Xgoods
+    },
     //识物
     {
         path: '/shiwu',
@@ -40,16 +47,20 @@ const routes = [
         path: '/personal',
         name: 'personal',
         component: Xpersonal,
-    },{
+    },
+    //注册
+    {
         path: '/Signin',
         name: 'Signin',
         component: Signin,
-    },{
+    },
+    //登录
+    {
         path: '/Login',
         name: 'Login',
         component: Login,
     },
-    
+
     // // 重定向路由，比如刚进页面的时候，默认跳转的路由位置
     {
         path: '/',
