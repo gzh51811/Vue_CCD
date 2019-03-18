@@ -78,7 +78,6 @@ export default {
         ul{
             width: 100%;
             li{
-                background: yellow;
                 width: 48%;
                 display: flex;
                 justify-content: space-around;
@@ -104,7 +103,7 @@ export default {
                     }
                     span{
                         font-size: 1rem;
-                        color:red;
+                        color:#b4282d;
                         margin-left:0.2632rem;
                     }
                 }

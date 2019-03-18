@@ -46,10 +46,14 @@
                 <div class="cart_buy">下单</div>
             </div>
         </div>
-    </div>    
+        <div id="Footer">
+            <Xfooter Fnum="3"/>
+        </div>
+    </div>
 </template>
 <script>
 import Vue from "vue";
+import Xfooter from "../components/Xfooter.vue";
 import { Card } from 'vant';
 import { Checkbox, CheckboxGroup } from 'vant';
 Vue.use(Card);
@@ -60,14 +64,8 @@ export default {
             checked: true
         }
     },
-    created:{
-
-    },
-    methods:{
-
-    },
-    mounted(){
-
+    components: {
+        Xfooter
     }
 }
 </script>
@@ -222,7 +220,7 @@ export default {
             .cart_footer{
                 background: #fff;
                 position: fixed;
-                bottom:3.75rem;
+                bottom:5rem;
                 width: 100%;
                 height: 3.75rem;
                 display: flex;
@@ -247,6 +245,12 @@ export default {
                     font-size: 1.25rem;
                 }
             }
+        }
+        #Footer {
+            width: 100%;
+            height: 5rem;
+            position: fixed;
+            bottom: 0;
         }
     }
 </style>
