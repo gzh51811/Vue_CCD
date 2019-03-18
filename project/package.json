@@ -9,7 +9,13 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "iview": "^3.3.0",
     "jquery": "^3.3.1",
+    "lib-flexible": "^0.3.2",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "scss-loader": "0.0.1",
+    "style-loader": "^0.23.1",
     "vant": "^1.6.9",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
@@ -20,6 +26,7 @@
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-import": "^1.11.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"

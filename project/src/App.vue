@@ -1,34 +1,45 @@
 <template>
   <div id="app">
+
     <div id="Footer">
-<Xfooter />
+      <Xfooter />
     </div>
     
   </div>
 </template>
 
 <script>
-import Xfooter from './components/Xfooter.vue'
+import Xfooter from "./components/Xfooter.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Xfooter
   }
-}
+};
 </script>
 
 <style>
-*{margin: 0;padding: 0;}
-#app { 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+#app {
   padding: 0;
   margin: 0;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   background: yellow;
 }
-#Footer{
+#Footer {
   width: 100%;
   height: 80px;
   position: fixed;

@@ -2,6 +2,14 @@
 import Vue from 'vue'
 import router from './router/router.js'
 import store from './store/store.js'
+// 引入iview UI框架
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+// 引入vant UI框架
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+
 
 // 引入ajax库
 import axios from 'axios'
@@ -9,6 +17,8 @@ import axios from 'axios'
 import $ from 'jquery'
 Vue.prototype.$axios = axios
 Vue.prototype.$ = $
+Vue.use(iView);
+Vue.use(Vant);
 Vue.config.productionTip = false
 
 new Vue({
