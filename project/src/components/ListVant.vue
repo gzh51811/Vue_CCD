@@ -4,7 +4,7 @@
         <van-swipe @change="onChange">
             <van-swipe-item v-for="item in goods" :key="item.id">
                 <div class="goods_itme">
-                    <img src="" alt="">
+                    <img :src="childMsg[0].imgurl" alt="">
                 </div>
             </van-swipe-item>
         </van-swipe>
@@ -23,18 +23,28 @@ export default {
             current: 0,
             goods:[{
                 id:"01",
-                url:""
             },
             {
                 id:"02",
-                url:""
+            },
+            {
+                id:"03",
+            },
+            {
+                id:"04",
+            },
+            {
+                id:"05",
             }]
         }
     },
+    props:['childMsg'],
     methods:{
         onChange(index){
             this.current = index;
         }
+    },
+    mounted(){
     }
 }
 </script>
@@ -43,6 +53,9 @@ export default {
     width: 100%;
     height: 18.75rem;
     // background: rebeccapurple;
+    img{
+        width: 100%;
+    }
 }
 .custom-indicator{
     position: relative;

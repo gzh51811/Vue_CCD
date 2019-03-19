@@ -2,15 +2,33 @@
     <div class="goodslist">
         <myheader />
         <div class="goods_main">
-            <listvant />
-            <div class="goods_trait">
-                <dl class="goods_dl" v-for="item in goods_trait" >
+            <listvant v-if="goods_trait[0]" :child-msg="goods_trait" />
+            <div class="goods_trait" v-if="goods_trait[0]">
+                <dl class="goods_dl" >
                     <dt>
-                        <img :src="item.url" alt="">
+                        <img :src="goods_trait[0].imgurl" alt="">
                     </dt>
                     <dd>
-                        <p>{{item.title1}}</p>
-                        <p>{{item.title2}}</p>
+                        <p>这个商品</p>
+                        <p>超级棒的</p>
+                    </dd>
+                </dl>
+                <dl class="goods_dl" >
+                    <dt>
+                        <img :src="goods_trait[0].imgurl" alt="">
+                    </dt>
+                    <dd>
+                        <p>这个商品</p>
+                        <p>超级棒的</p>
+                    </dd>
+                </dl>
+                <dl class="goods_dl" >
+                    <dt>
+                        <img :src="goods_trait[0].imgurl" alt="">
+                    </dt>
+                    <dd>
+                        <p>这个商品</p>
+                        <p>超级棒的</p>
                     </dd>
                 </dl>
             </div>
@@ -19,9 +37,9 @@
                 超级会员价<b>160</b>
                 <a href="javascript:;">立即开通 > </a>
             </div>
-            <div class="goods_title">
-                <h4>大头风扇</h4>
-                <span>静音劲风</span>
+            <div class="goods_title" v-if="goods_trait[0]">
+                <h4>{{goods_trait[0].title}}</h4>
+                <span>{{goods_trait[0].subhead}}</span>
                 <a href="######">
                     <b>98.8%</b>
                     <p>好评率</p>
@@ -91,7 +109,7 @@
                 </ul>
             </div>
         </div>
-        <myfooter />
+        <myfooter v-if="goods_trait[0]" :child-msg="goods_trait"/>
     </div>
 </template>
 <script>
@@ -106,23 +124,33 @@ export default {
     },
     data(){
         return {
-            goods_trait:[{
-                url:require("../assets/good_1.jpg"),
-                title1:"冲鸭冲鸭",
-                title2:"好啊好啊"
-            },
-            {
-                url:require("../assets/good_1.jpg"),
-                title1:"冲鸭冲鸭",
-                title2:"好啊好啊"
-            },
-            {
-                url:require("../assets/good_1.jpg"),
-                title1:"冲鸭冲鸭",
-                title2:"好啊好啊"
-            }],
-
+            goods_trait:[],
         }
+    },
+    watch:{
+        $route(to,from){
+            this.getData();
+        }
+    },
+    methods:{
+       async getData(){
+            let { id:_id, code } = this.$route.query;
+            let res = await this.$axios.get("http://localhost:3000/list",{
+                params:{
+                    code,
+                    _id
+                }
+            });
+            this.goods_trait = res.data;
+            // console.log(this.goods_trait);
+            // 使用相对路径的方法
+            // let str = res.data[0].imgurl.replace('../','');
+            // res.data[0].imgurl =  require('../'+str);
+            // this.goods_trait = res.data;
+        }
+    },
+    created(){
+        this.getData();
     }
     
 }

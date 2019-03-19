@@ -10,10 +10,12 @@
         </div>
         <div class="list_goods">
             <ul>
-                <li class="list_item" v-for="item in list_goods" :key="item.title">
+                <li class="list_item" v-for="item in list_goods" :key="item._id">
                     <div class="item">
-                        <img src="" alt="">
-                        <p>{{item.title}}</p>
+                        <!-- /img/good_1.366b1ca5.jpg -->
+                        <!-- ../assets/good_1.jpg -->
+                        <img :src="item.imgurl" @click="golist(item._id)" alt="">
+                        <p @click="golist" >{{item.title}}</p>
                         <span><b>￥</b>{{item.price}}</span>
                     </div>
                 </li>
@@ -26,21 +28,46 @@ import myheader from '../components/ListHeader.vue';
 export default {
     data(){
         return {
-            list_goods:[{
-                url:"",
-                title:"我是标题",
-                price:"666"
-            },
-            {
-                url:"",
-                title:"好巧，我也是哦",
-                price:"999"
-            }]
+            list_goods:[]
         }
     },
     components:{
         myheader,
     },
+    methods:{
+        golist(id){
+            this.$router.push({
+                name:"goods",
+                params:{
+                    code:2,
+                    id
+                },
+                query:{
+                    code:2,
+                    id
+                }
+            });
+        }
+    },
+    created(){
+        // 初始化渲染
+        this.$axios.get("http://localhost:3000/list",{
+            params:{
+                code:1,
+            }
+        }).then(res => {
+            // console.log(res.data[0].imgurl);
+            this.list_goods = res.data;
+            // this.list_goods =  res.data.map(item=>{
+            //     // console.log(item.imgurl);
+            //     var str = item.imgurl.replace('../','');
+            //     item.imgurl = require('../'+str);
+            //     return item;
+            // })
+            // console.log(list_goods);
+            
+        });
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -81,7 +108,7 @@ export default {
                 width: 48%;
                 display: flex;
                 justify-content: space-around;
-                height:12.5rem;
+                height:14.5rem;
                 margin:1%;
                 float: left;
                 .item{
@@ -90,8 +117,7 @@ export default {
                     img{
                         display: block;
                         width: 100%;
-                        height: 160px;
-                        background: yellowgreen;
+                        height: 11.25rem;
                     }
                     p{
                         width:8.75rem;

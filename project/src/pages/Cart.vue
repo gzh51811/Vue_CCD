@@ -16,23 +16,23 @@
                 </div>
             </div>
             <ul class="cart_goods">
-                <li>
+                <li v-for="goods in cartlist" :key="goods._id">
                     <div class="cart_checked">
                         <van-checkbox v-model="checked" checked-color="#ab2b2b"></van-checkbox>
                     </div>
                     <div class="cart_img">
-                        <img src="../assets/good_1.jpg" alt="">
+                        <img :src="goods.imgurl" alt="">
                         <span></span>
                     </div>
                     <div class="cart_conent">
-                        <p>男款经典基础西装套</p>
+                        <p>{{goods.name}}</p>
                         <div class="cart_color">M; 藏青色</div>
-                        <span>￥1499</span>
+                        <span>￥：{{goods.price}}</span>
                     </div>
                     <div class="cart_number">
-                        <div class="cart_sub" @click="sub()" >-</div>
-                        <input type="number" value="1">
-                        <div class="cart_add">+</div>
+                        <div class="cart_sub" @click="sub(goods._id,goods.qty,goods.price)" >-</div>
+                        <input type="number" :value="goods.qty">
+                        <div class="cart_add" @click="add(goods._id,goods.qty,goods.price)" >+</div>
                     </div>
                 </li>
             </ul>
@@ -52,6 +52,7 @@
     </div>
 </template>
 <script>
+import {mapState,mapMutations} from 'vuex';
 import Vue from "vue";
 import Xfooter from "../components/Xfooter.vue";
 import { Card } from 'vant';
@@ -66,7 +67,36 @@ export default {
     },
     components: {
         Xfooter
+    },
+    computed:{
+        ...mapState([
+            'cartlist'//映射computed.cartlist为this.$store.state.cartlist
+        ])
+    },
+    methods:{
+        ...mapMutations({
+            remove:'removeGoods',
+        }),
+        sub(_id,qty,price){
+            // 减数量
+            if(qty > 1){
+                this.$store.commit('changeQty',{_id,qty:qty-1});
+            }  
+        },
+        add(_id,qty,price){
+            // 加数量
+            this.$store.commit('changeQty',{_id,qty:qty+1});
+        },
+        unitPrice(){
+
+        }
+    },
+    mounted(){
+        console.log(this.$store.state.cartlist);
+        
+        // var all_price = 
     }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -93,7 +123,7 @@ export default {
             }
         }
         .cart_main{
-            margin:3rem 0 3rem 0;
+            margin:3rem 0 8rem 0;
             flex:1;
             .cart_post{
                 height: 3rem;
@@ -142,8 +172,9 @@ export default {
                 }
             }
             .cart_goods{
+                height: auto;
                 background: #fff;
-                overflow: hidden;
+                overflow: auto;
                 li{
                     width: 100%;
                     height: 7rem;
