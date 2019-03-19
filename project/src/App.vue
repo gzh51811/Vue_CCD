@@ -157,12 +157,19 @@
     <img src="./assets/881533d9e66e57566114b85b67ab2205.jpg" alt style="width:100%;">
     <div id="FooterUp"></div>
     <div id="Footer">
+<<<<<<< HEAD
       <Xfooter Fnum="0"/>
     </div>
+=======
+      <Xfooter />
+    </div>
+
+>>>>>>> 73efa649945784e3dde8620215845b6e69fe8854
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import Xfooter from "./components/Xfooter.vue";
 
 export default {
@@ -427,3 +434,41 @@ border: indianred solid 1px;text-align: center;border-radius: 5px;height: 25px;f
   bottom: 0;
 }
 </style>
+=======
+  import Xfooter from './components/Xfooter.vue'
+
+  export default {
+    name: 'app',
+    components: {
+      Xfooter
+    }
+  }
+</script>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #app {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: yellow;
+  }
+
+  #Footer {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
+>>>>>>> 73efa649945784e3dde8620215845b6e69fe8854

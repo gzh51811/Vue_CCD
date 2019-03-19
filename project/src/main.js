@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import router from './router/router.js'
 import store from './store/store.js'
@@ -15,12 +14,14 @@ import 'vant/lib/index.css';
 import axios from 'axios'
 // 引入jQuery库
 import $ from 'jquery'
+import flexible from 'lib-flexible'
 Vue.prototype.$axios = axios
 Vue.prototype.$ = $
 Vue.use(iView);
 Vue.use(Vant);
 Vue.config.productionTip = false
 
+Vue.use(flexible)
 new Vue({
   router,
   store,
