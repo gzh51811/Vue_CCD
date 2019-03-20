@@ -1,6 +1,6 @@
 <template>
-    <div class="cart">
-        <h2>购物车 <a href="######">编辑</a></h2>
+    <div id="cart">
+        <h2>购物车 <a href="######" @click="edit">编辑</a></h2>
         <div class="cart_main">
             <div class="cart_post">
                 <p>已满足免邮条件</p>
@@ -16,9 +16,10 @@
                 </div>
             </div>
             <ul class="cart_goods">
-                <li v-for="goods in cartlist" :key="goods._id">
+                <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange">
+                <li v-for="(goods,idx) in goodslist" :key="goods._id">
                     <div class="cart_checked">
-                        <van-checkbox v-model="checked" checked-color="#ab2b2b"></van-checkbox>
+                        <Checkbox class="checked_item" :label="idx" ></Checkbox>
                     </div>
                     <div class="cart_img">
                         <img :src="goods.imgurl" alt="">
@@ -30,18 +31,22 @@
                         <span>￥：{{goods.price}}</span>
                     </div>
                     <div class="cart_number">
-                        <div class="cart_sub" @click="sub(goods._id,goods.qty,goods.price)" >-</div>
+                        <div class="cart_sub" @click="sub(goods.qty,goods._id)" >-</div>
                         <input type="number" :value="goods.qty">
-                        <div class="cart_add" @click="add(goods._id,goods.qty,goods.price)" >+</div>
+                        <div class="cart_add" @click="add(goods.qty,goods._id)" >+</div>
                     </div>
                 </li>
+                </CheckboxGroup>
             </ul>
-            <div class="cart_footer">
-                <div class="checked_all">
-                    <van-checkbox v-model="checked" checked-color="#ab2b2b">已选(1)</van-checkbox>
+            <div class="cart_footer" >
+                <div class="checked_all"> 
+                   <Checkbox :indeterminate="indeterminate"
+                    :value="checkAll"
+                    @click.prevent.native="handleCheckAll"
+                    class="checked_item">选中({{this.checkAllGroup.length}})</Checkbox>
                 </div>
                 <div class="number_all">
-                    合计：¥1499
+                    合计：¥{{all_price}}
                 </div>
                 <div class="cart_buy">下单</div>
             </div>
@@ -62,7 +67,11 @@ Vue.use(Checkbox).use(CheckboxGroup);
 export default {
     data(){
         return {
-            checked: true
+            goodslist:[],
+            price_total:0,
+            indeterminate: false,
+            checkAll: false,
+            checkAllGroup: []
         }
     },
     components: {
@@ -71,36 +80,112 @@ export default {
     computed:{
         ...mapState([
             'cartlist'//映射computed.cartlist为this.$store.state.cartlist
-        ])
+        ]),
+        all_price(){
+            this.goodslist.map(item=>{
+                let num = item.price * item.qty;
+                this.price_total += num;
+            });
+            return this.price_total;
+        },
+
     },
     methods:{
         ...mapMutations({
             remove:'removeGoods',
         }),
-        sub(_id,qty,price){
+        sub(qty,id){
             // 减数量
             if(qty > 1){
-                this.$store.commit('changeQty',{_id,qty:qty-1});
-            }  
-        },
-        add(_id,qty,price){
-            // 加数量
-            this.$store.commit('changeQty',{_id,qty:qty+1});
-        },
-        unitPrice(){
+                for(let i = 0;i<this.goodslist.length;i++){
+                    if(this.goodslist[i]._id == id){
+                        this.goodslist[i].qty = qty - 1;
+                        this.price_total = 0 ;
+                        this.$axios.post("http://localhost:3000/cart",{
+                            params:{
+                                code:3,
+                                _id:this.goodslist[i]._id,
+                                qty:this.goodslist[i].qty
+                            }
+                        }).then(res => {
 
+                        });
+                    }
+                }
+            }
+        },
+        add(qty,id){
+            // 加数量
+            for(let i = 0;i<this.goodslist.length;i++){
+                if(this.goodslist[i]._id == id){
+                    this.goodslist[i].qty = qty + 1;
+                    this.price_total = 0;
+                    this.$axios.post("http://localhost:3000/cart",{
+                        params:{
+                            code:3,
+                            _id:this.goodslist[i]._id,
+                            qty:this.goodslist[i].qty
+                        }
+                    }).then(res => {
+
+                    });
+                }
+            }
+        },
+        edit(){
+            console.log(123);
+
+        },
+        handleCheckAll () {
+            if (this.indeterminate) {
+                this.checkAll = false;
+            } else {
+                this.checkAll = !this.checkAll;
+            }
+            this.indeterminate = false;
+
+            if (this.checkAll) {
+                this.checkAllGroup = this.goodslist.map( (item,idx) => {
+                    return idx;
+                });
+            } else {
+                this.checkAllGroup = [];
+            }
+        },
+        checkAllGroupChange (data) {
+            if (data.length === this.goodslist.length) {
+                this.indeterminate = false;
+                this.checkAll = true;
+            } else if (data.length > 0) {
+                this.indeterminate = true;
+                this.checkAll = false;
+            } else {
+                this.indeterminate = false;
+                this.checkAll = false;
+            }
         }
     },
-    mounted(){
-        console.log(this.$store.state.cartlist);
-        
-        // var all_price = 
+    created(){
+        // this.allPrice(this.all_price);
+        // 初始化渲染
+        this.$axios.post("http://localhost:3000/cart",{
+            params:{
+                code:1
+            }
+        }).then(res => {
+            // console.log(res.data);
+            this.goodslist = res.data;
+        });
+    },
+    update(){
+        // this.allPrice(this.all_price);
+        // console.log(this.all_price);
     }
 
 }
 </script>
-<style lang="scss" scoped>
-    .cart{
+<style lang="scss">
+    #cart{
         display: flex;
         width: 100%;
         h2{
@@ -203,7 +288,7 @@ export default {
                     }
                     .cart_conent{
                         flex:4.5;
-                        font-size: 1.25rem;
+                        font-size: 1rem;
                         padding:.625rem;
                         p{
                             width: 100%;
@@ -216,7 +301,7 @@ export default {
                             width: 5rem;
                             text-align: center;
                             background: #fafafa;
-                            font-size: 1rem;
+                            font-size: 0.875rem;
                         }
                         span{
                             display: inline-block;
@@ -276,6 +361,16 @@ export default {
                     font-size: 1.25rem;
                 }
             }
+            .checked_item{
+                .ivu-checkbox-inner{
+                    border:.0625rem solid #999;
+                    width: 1rem;
+                    height:1rem;
+                }
+                span:nth-child(2){
+                    display: none;
+                }
+            }
         }
         #Footer {
             width: 100%;
@@ -283,5 +378,6 @@ export default {
             position: fixed;
             bottom: 0;
         }
+        
     }
 </style>

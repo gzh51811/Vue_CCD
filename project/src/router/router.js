@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import App from '../App.vue';
-import Xlist from '../pages/List.vue';
-import Xgoods from '../pages/Goods.vue';
+import List from '../pages/list.vue';
+import Xlist from '../pages/Classify.vue';
+import Xgoods from '../pages/goods.vue';
 import Xshiwu from '../pages/Shiwu.vue';
 import Xcart from '../pages/Cart.vue';
 import Xpersonal from "../pages/Personal.vue";
@@ -98,6 +99,12 @@ const routes = [
         ]
 
     },
+     //列表
+    {
+    path: '/CList',
+    name: 'clist',
+    component: List,
+    },
 
     // // 重定向路由，比如刚进页面的时候，默认跳转的路由位置
     {
@@ -113,5 +120,27 @@ const router = new VueRouter({
     routes: routes
 })
 
+// 路由守卫
+router.beforeEach((to, from, next) => {
+    // 如果去购物车或者我的页面的话先进去登录
+    if ( to.path == '/personal') {
+        //添加条件检测是否登录
+        let isLogin = localStorage.getItem("isLogIn");
+        if (isLogin != "true") {
+            alert("请先进行登录");
+            router.push({
+                name: "Login"
+            })
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+    //延迟时间进购物车
+    // setTimeout(()=>{
+    //     next()
+    // },3000)
+})
 
 export default router
