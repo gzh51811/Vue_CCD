@@ -1,18 +1,34 @@
 <template>
     <div id="login">
+<<<<<<< HEAD
 
         <div class="login_header"> 头</div>
+=======
+        <myheader />
+        <!-- <div class="login_header"> 头</div> -->
+>>>>>>> cyy
 
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
     export default {
 
     }
 </script>
 <style>
+=======
+import myheader from '../components/ListHeader.vue';
+    export default {
+        components:{
+            myheader,
+        }
+    }
+</script>
+<style scoped>
+>>>>>>> cyy
     #login {
         display: flex;
         flex-direction: column;

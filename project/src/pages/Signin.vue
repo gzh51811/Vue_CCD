@@ -1,15 +1,27 @@
 <template>
     <div id="reg">
 
+<<<<<<< HEAD
         <div class="login_header"> 头</div>
+=======
+        <myheader />
+>>>>>>> cyy
 
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
     export default {
 
+=======
+import myheader from '../components/ListHeader.vue';
+    export default {
+        components:{
+            myheader,
+        }
+>>>>>>> cyy
     }
 </script>
 <style>

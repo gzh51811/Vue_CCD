@@ -10,13 +10,19 @@ import Xshiwu from '../pages/Shiwu.vue';
 import Xcart from '../pages/Cart.vue';
 import Xpersonal from "../pages/Personal.vue";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cyy
 //登录
 import Login from '../pages/Login.vue';
 import Phone from '../pages/Phone.vue';
 import Email from '../pages/Email.vue';
 import Llogin from '../pages/llogin.vue';
+<<<<<<< HEAD
 
+=======
+>>>>>>> cyy
 //注册
 import Signin from '../pages/Signin.vue';
 import RegPhone from '../pages/RegPhone.vue';
@@ -97,7 +103,10 @@ const routes = [
                 component: Email,
             }
         ]
+<<<<<<< HEAD
 
+=======
+>>>>>>> cyy
     },
      //列表
     {
