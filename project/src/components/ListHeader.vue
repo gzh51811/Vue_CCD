@@ -3,7 +3,7 @@
         <div class="icon_1" @click="gotohome"><Icon type="ios-home-outline" /></div>
         <h2>网易严选</h2>
         <div class="icon_2"><Icon type="ios-search-outline" /></div>
-        <div class="icon_3"><Icon type="ios-cart-outline" /></div>
+        <div class="icon_3" @click="gotocart"><Icon type="ios-cart-outline" /></div>
     </div>
 </template>
 <script>
@@ -12,6 +12,9 @@ export default {
     methods:{
         gotohome(){
             this.$router.push("/");
+        },
+        gotocart(){
+            this.$router.push({ name: "cart" });
         }
     }
 
