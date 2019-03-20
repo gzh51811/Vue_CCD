@@ -12,8 +12,6 @@
             <ul>
                 <li class="list_item" v-for="item in list_goods" :key="item._id">
                     <div class="item">
-                        <!-- /img/good_1.366b1ca5.jpg -->
-                        <!-- ../assets/good_1.jpg -->
                         <img :src="item.imgurl" @click="golist(item._id)" alt="">
                         <p @click="golist" >{{item.title}}</p>
                         <span><b>￥</b>{{item.price}}</span>

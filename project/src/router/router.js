@@ -9,8 +9,17 @@ import Xgoods from '../pages/goods.vue';
 import Xshiwu from '../pages/Shiwu.vue';
 import Xcart from '../pages/Cart.vue';
 import Xpersonal from "../pages/Personal.vue";
-import Signin from '../pages/Signin.vue';
+
+//登录
 import Login from '../pages/Login.vue';
+import Phone from '../pages/Phone.vue';
+import Email from '../pages/Email.vue';
+import Llogin from '../pages/llogin.vue';
+//注册
+import Signin from '../pages/Signin.vue';
+import RegPhone from '../pages/RegPhone.vue';
+import RegEmail from '../pages/RegEmail.vue';
+
 // 配置路由
 const routes = [
     //首页
@@ -51,15 +60,41 @@ const routes = [
     },
     //注册
     {
-        path: '/Signin',
-        name: 'Signin',
+        path: '/signin',
+        name: 'signin',
         component: Signin,
+        children: [{
+                path: 'regphone',
+                name: 'regphone',
+                component: RegPhone,
+            },
+            {
+                path: 'regemail',
+                name: 'regemail',
+                component: RegEmail,
+            }
+        ]
     },
     //登录
     {
         path: '/Login',
         name: 'Login',
         component: Login,
+        children: [{
+                path: 'llogin',
+                name: 'llogin',
+                component: Llogin,
+            }, {
+                path: 'phone',
+                name: 'phone',
+                component: Phone,
+            },
+            {
+                path: 'email',
+                name: 'email',
+                component: Email,
+            }
+        ]
     },
      //列表
     {
