@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import App from '../App.vue';
-import List from '../pages/List.vue';
+import List from '../pages/list.vue';
 import Xlist from '../pages/Classify.vue';
-import Xgoods from '../pages/Goods.vue';
+import Xgoods from '../pages/goods.vue';
 import Xshiwu from '../pages/Shiwu.vue';
 import Xcart from '../pages/Cart.vue';
 import Xpersonal from "../pages/Personal.vue";
