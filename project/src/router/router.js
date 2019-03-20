@@ -85,7 +85,7 @@ const router = new VueRouter({
 // 路由守卫
 router.beforeEach((to, from, next) => {
     // 如果去购物车或者我的页面的话先进去登录
-    if (to.path == '/cart' || to.path == '/personal') {
+    if ( to.path == '/personal') {
         //添加条件检测是否登录
         let isLogin = localStorage.getItem("isLogIn");
         if (isLogin != "true") {

@@ -1,5 +1,5 @@
 <template>
-    <div class="cart">
+    <div id="cart">
         <h2>购物车 <a href="######" @click="edit">编辑</a></h2>
         <div class="cart_main">
             <div class="cart_post">
@@ -19,7 +19,7 @@
                 <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange">
                 <li v-for="(goods,idx) in goodslist" :key="goods._id">
                     <div class="cart_checked">
-                        <Checkbox :label="idx" ></Checkbox>
+                        <Checkbox class="checked_item" :label="idx" ></Checkbox>
                     </div>
                     <div class="cart_img">
                         <img :src="goods.imgurl" alt="">
@@ -42,7 +42,8 @@
                 <div class="checked_all"> 
                    <Checkbox :indeterminate="indeterminate"
                     :value="checkAll"
-                    @click.prevent.native="handleCheckAll">选中(2)</Checkbox>
+                    @click.prevent.native="handleCheckAll"
+                    class="checked_item">选中({{this.checkAllGroup.length}})</Checkbox>
                 </div>
                 <div class="number_all">
                     合计：¥{{all_price}}
@@ -68,9 +69,9 @@ export default {
         return {
             goodslist:[],
             price_total:0,
-            indeterminate: true,
+            indeterminate: false,
             checkAll: false,
-            checkAllGroup: ['0','1','2']
+            checkAllGroup: []
         }
     },
     components: {
@@ -133,6 +134,7 @@ export default {
         },
         edit(){
             console.log(123);
+
         },
         handleCheckAll () {
             if (this.indeterminate) {
@@ -143,13 +145,15 @@ export default {
             this.indeterminate = false;
 
             if (this.checkAll) {
-                this.checkAllGroup = ['0', '1', '2'];
+                this.checkAllGroup = this.goodslist.map( (item,idx) => {
+                    return idx;
+                });
             } else {
                 this.checkAllGroup = [];
             }
         },
         checkAllGroupChange (data) {
-            if (data.length === 3) {
+            if (data.length === this.goodslist.length) {
                 this.indeterminate = false;
                 this.checkAll = true;
             } else if (data.length > 0) {
@@ -180,8 +184,8 @@ export default {
 
 }
 </script>
-<style lang="scss" scoped>
-    .cart{
+<style lang="scss">
+    #cart{
         display: flex;
         width: 100%;
         h2{
@@ -357,6 +361,16 @@ export default {
                     font-size: 1.25rem;
                 }
             }
+            .checked_item{
+                .ivu-checkbox-inner{
+                    border:.0625rem solid #999;
+                    width: 1rem;
+                    height:1rem;
+                }
+                span:nth-child(2){
+                    display: none;
+                }
+            }
         }
         #Footer {
             width: 100%;
@@ -364,5 +378,6 @@ export default {
             position: fixed;
             bottom: 0;
         }
+        
     }
 </style>
