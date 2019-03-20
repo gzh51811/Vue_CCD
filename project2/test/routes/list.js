@@ -12,7 +12,7 @@ const jsonParser = bodyParser.json();
 router.get('/', urlencodedParser, jsonParser, async (req, res) => {
     // get请求的参数
     let {code,_id} = req.query;
-    console.log(code , _id);
+    // console.log(code , _id);
     if(code == "1"){
         let str = await db.find('goods_list',{ });
         // console.log(str);

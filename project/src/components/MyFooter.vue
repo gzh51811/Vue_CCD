@@ -14,6 +14,19 @@ export default {
     methods:{
         addcart(){
             let { _id,imgurl,name,price } = this.childMsg[0];
+            // 把商品信息存入数据库的购物车表
+            this.$axios.post("http://localhost:3000/cart",{
+                params:{
+                    code:2,
+                    _id,
+                    imgurl,
+                    name,
+                    price,
+                    qty:1
+                }
+            }).then(res => {
+                // console.log(res);
+            });
 
             // 获取购物车商品信息
             let currentGoods = this.$store.state.cartlist.filter(item=>item._id === _id)[0];
@@ -33,6 +46,8 @@ export default {
                     qty:1
                 })
             }
+            
+            
         }
     }
 }
