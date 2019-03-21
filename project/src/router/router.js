@@ -132,14 +132,14 @@ const router = new VueRouter({
 // 路由守卫
 router.beforeEach((to, from, next) => {
     // 如果去购物车或者我的页面的话先进去登录
-    if ( to.path == '/personal') {
+    if ( to.path == '/personal' || to.path == '/cart') {
         //添加条件检测是否登录
-        let isLogin = localStorage.getItem("isLogIn");
-        if (isLogin != "true") {
-            alert("请先进行登录");
+        let isLogin = localStorage.getItem("user");
+        // console.log(isLogin);
+        if (isLogin == null) {
             router.push({
-                name: "Login"
-            })
+                name: 'llogin'
+            });
         } else {
             next();
         }

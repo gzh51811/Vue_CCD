@@ -9,7 +9,8 @@
                     <el-input type="text" v-model="ruleForm2.phone" autocomplete="off" placeholder="请输入手机号"></el-input>
                 </el-form-item>
                 <el-form-item prop="pass">
-                    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off" placeholder="请输入密码"></el-input>
+                    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off" placeholder="请输入密码">
+                    </el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('ruleForm2')">确定</el-button>
@@ -98,7 +99,6 @@
                             username: this.ruleForm2.phone,
                             password: this.ruleForm2.pass
                         }).then(res => {
-                            console.log(res)
                             if (res.data.ok !== 1) {
                                 alert(res.data.ok);
                             } else {
@@ -128,19 +128,19 @@
 <style scoped>
     .p_tu {
         text-align: center;
-        margin: 1.3333rem 0;
-        font-size: 0.5333rem;
+        margin: 3.125rem 0;
+        font-size: 1.25rem;
     }
 
     .p_from {
-        margin: 0 0.5333rem;
+        margin: 0 1.25rem;
     }
 
     .el-button--primary {
         color: #FFF;
         background: #b4282d;
         border-color: #b4282d;
-        font-size: 0.4267rem;
+        font-size: 1rem;
     }
 
     .el-button {
@@ -150,23 +150,23 @@
 
     .btn {
         width: 100%;
-        height: 1.2533rem;
-        line-height: 1.2533rem;
-        border: 0.0267rem solid #b4282d;
-        border-radius: 0.0533rem;
+        height: 2.9375rem;
+        line-height: 2.9375rem;
+        border: .0625rem solid #b4282d;
+        border-radius: .125rem;
         text-align: center;
         overflow: hidden;
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
         color: #b4282d;
-        font-size: 0.4267rem;
+        font-size: 1rem;
     }
 
     .reg_link {
         color: #7f7f7f;
         position: relative;
         overflow: hidden;
-        margin-bottom: 0.5333rem;
-        font-size: 0.3733rem;
+        margin-bottom: 1.25rem;
+        font-size: .875rem;
     }
 
     .reg_link a {
@@ -179,8 +179,8 @@
     }
 
     .zc-un-login {
-        width: 14px;
-        height: 14px;
+        width: .875rem;
+        height: .875rem;
         margin: 0;
         opacity: 0;
         cursor: pointer;
@@ -189,30 +189,30 @@
     .link_chenk {
         display: block;
         float: left;
-        margin-right: 5px;
-        width: 14px;
-        margin-top: 3px;
-        height: 14px;
+        margin-right: .3125rem;
+        width: .875rem;
+        margin-top: .1875rem;
+        height: .875rem;
         cursor: pointer;
-        border: solid 1px #aaa;
+        border: solid .0625rem #aaa;
         color: #999;
-        font-size: 12px;
+        font-size: .75rem;
     }
 
     .login_reg {
-        height: 0.5333rem;
-        line-height: 0.5333rem;
-        font-size: 0.4267rem;
+        height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 1rem;
         text-align: center;
     }
 
     .login_reg i {
         display: inline-block;
         vertical-align: middle;
-        width: 0.3733rem;
-        height: 0.3733rem;
-        margin-left: 0.0533rem;
-        margin-right: 0.2133rem;
+        width: .875rem;
+        height: .875rem;
+        margin-left: .125rem;
+        margin-right: .5rem;
         background: url(../assets/login_jtou.png) no-repeat;
         background-size: 100% 100%;
     }

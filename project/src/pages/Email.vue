@@ -9,7 +9,8 @@
                     <el-input type="text" v-model="ruleForm2.email" autocomplete="off" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
                 <el-form-item prop="pass">
-                    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off" placeholder="请输入密码"></el-input>
+                    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off" placeholder="请输入密码">
+                    </el-input>
                 </el-form-item>
                 <div class="wji">
                     <a href="javascript:;" class="regs" @click="ReglLogin">注册账号</a>
@@ -86,7 +87,7 @@
                         }).then(res => {
                             if (res.data.str.length > 0) {
                                 let token =
-                                    `"token":${res.data.token},"name":"${res.data.str[0].username}"`
+                                   `{"token":"${res.data.token}","name":"${res.data.str[0].username}","code":"1"}`
                                 localStorage.setItem('user', token);
                                 this.$router.push({
                                     name: 'personal'
@@ -120,22 +121,22 @@
 <style scoped>
     .p_tu {
         text-align: center;
-        margin: 1.3333rem 0 0.7467rem 0;
+        margin: 3.125rem 0 1.75rem 0;
     }
 
     .p_tu img {
-        width: 2.56rem;
-        height: .85333rem;
+        width: 6rem;
+        height: 2rem;
     }
 
     .p_from {
-        margin: 0 0.5333rem;
+        margin: 0 1.25rem;
     }
 
     .wji {
-        font-size: 0.4267rem;
-        margin: 0.5333rem 0;
-        line-height: 0.5333rem;
+        font-size: 1rem;
+        margin: 1.25rem 0;
+        line-height: 1.25rem;
         overflow: hidden;
     }
 
@@ -153,7 +154,7 @@
         color: #FFF;
         background: #b4282d;
         border-color: #b4282d;
-        font-size: 0.4267rem;
+        font-size: 1rem;
     }
 
     .el-button {
@@ -163,14 +164,14 @@
 
     .btn {
         width: 100%;
-        height: 1.2533rem;
-        line-height: 1.2533rem;
-        border: 0.0267rem solid #b4282d;
-        border-radius: 0.0533rem;
+        height: 2.9375rem;
+        line-height: 2.9375rem;
+        border: 1px solid #b4282d;
+        border-radius: .125rem;
         text-align: center;
         overflow: hidden;
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
         color: #b4282d;
-        font-size: 0.4267rem;
+        font-size: 1rem;
     }
 </style>
