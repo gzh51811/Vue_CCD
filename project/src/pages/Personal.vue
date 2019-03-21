@@ -9,7 +9,7 @@
         <img src="../assets/20190318104703.png">
       </div>
       <div id="userMsg">
-        <div>4008-823-823</div>
+        <div>{{username}}</div>
         <h4>普通用户</h4>
       </div>
     </div>
@@ -74,8 +74,8 @@
         <li></li>
       </ul>
     </div>
-    <div id="Plog" Fnum="4">
-      <div id="Plogout">退出登录</div>
+    <div id="Plog" Fnum="4" >
+      <div id="Plogout" @click="quit">退出登录</div>
     </div>
     <div id="Footer">
       <Xfooter Fnum="4"/>
@@ -86,10 +86,27 @@
 import Xfooter from "../components/Xfooter.vue";
 export default {
   data() {
-    return {};
+    return {
+      username:''
+    };
   },
   components: {
     Xfooter
+  },
+  created(){
+      let token = localStorage.getItem('user');
+      if (token) {
+        let arr = JSON.parse(token);
+        this.$data.username = arr.name;
+
+      }
+  },
+  methods:{
+    quit(){
+      localStorage.removeItem('user');
+      this.$router.push({name:'llogin'});
+    },
+    
   }
 };
 </script>

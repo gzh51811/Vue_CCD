@@ -58,32 +58,32 @@
 </script>
 <style scoped>
     .top_tu {
-        padding: 2.1333rem 0;
+        padding: 5rem 0;
         text-align: center;
     }
 
     .top_tu img {
-        width: 3.5733rem;
-        height: 1.2rem;
+        width: 8.375rem;
+        height: 2.8125rem;
     }
 
     .top_btn {
         width: 100%;
-        padding: 0 0.5333rem;
+        padding: 0 1.25rem;
         box-sizing: border-box;
         text-align: center;
-        font-size: 0.4267rem;
+        font-size: 1rem;
     }
 
     .btn {
         width: 100%;
-        height: 1.2533rem;
-        line-height: 1.2533rem;
-        border: 0.0267rem solid #b4282d;
-        border-radius: 0.0533rem;
+        height: 2.9375rem;
+        line-height: 2.9375rem;
+        border: 1px solid #b4282d;
+        border-radius: 1.25rem;
         text-align: center;
         overflow: hidden;
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
     }
 
     .phoneLogin {
@@ -94,9 +94,9 @@
     .top_btn i {
         display: inline-block;
         vertical-align: middle;
-        width: 0.5333rem;
-        height: 0.5333rem;
-        margin-right: 0.2133rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: .5rem;
     }
 
     .top_btn span {
@@ -121,15 +121,15 @@
     }
 
     .login_reg {
-        height: 0.5333rem;
-        line-height: 0.5333rem;
+        height: 1.25rem;
+        line-height: 1.25rem;
     }
 
     .login_reg i {
-        width: 0.3733rem;
-        height: 0.3733rem;
-        margin-left: 0.0533rem;
-        margin-right: 0.2133rem;
+        width: .875rem;
+        height: .875rem;
+        margin-left: 1.25rem;
+        margin-right: .5rem;
         background: url(../assets/login_jtou.png) no-repeat;
         background-size: 100% 100%;
     }
@@ -138,25 +138,25 @@
         width: 100%;
         position: absolute;
         left: 0;
-        bottom: 1.0667rem;
-        height: 0.5333rem;
+        bottom: 2.5rem;
+        height: 1.25rem;
         text-align: center;
     }
 
     .bo_link {
-        height: 0.5333rem;
+        height: 1.25rem;
         border-right: 1px solid #979797;
         display: inline-block;
         text-align: center;
-        padding: 0 0.5333rem;
+        padding: 0 1.25rem;
     }
 
     .bo_link i {
         display: inline-block;
         vertical-align: middle;
-        width: 0.5333rem;
-        height: 0.5333rem;
-        line-height: 0.5333rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        line-height: 1.25rem;
         text-align: center;
 
         background-size: 98%;
@@ -178,11 +178,11 @@
         /* font-size: 10px; */
         display: inline-block;
         vertical-align: middle;
-        height: 0.5333rem;
-        line-height: 0.5333rem;
+        height: 1.25rem;
+        line-height: 1.25rem;
         text-align: center;
         color: #7F7F7F;
-        margin-left: 0.0533rem;
+        margin-left: 1.25rem;
     }
 
     .bo_link:nth-child(3) {
